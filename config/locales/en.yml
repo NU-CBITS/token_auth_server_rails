@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    success_saving: Successfully saved %{name}
+    failure_saving: "Unable to save %{name}: %{errors}"
+    success_destroying: Successfully destroyed %{name}
+    failure_destroying: "Unable to destroy %{name}: %{errors}"
