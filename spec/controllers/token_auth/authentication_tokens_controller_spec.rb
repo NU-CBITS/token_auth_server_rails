@@ -7,7 +7,7 @@ module TokenAuth
     def auth_token
       @auth_token ||= (
         token = instance_double("TokenAuth::AuthenticationToken",
-                                participant_id: 1)
+                                entity_id: 1)
         allow(token).to receive_message_chain("class.model_name.human")
           .and_return("Authentication token")
 
@@ -16,7 +16,7 @@ module TokenAuth
     end
 
     before do
-      allow(AuthenticationToken).to receive(:find_by_participant_id)
+      allow(AuthenticationToken).to receive(:find_by_entity_id)
         .and_return(auth_token)
     end
 

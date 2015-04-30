@@ -3,7 +3,7 @@ require "rails_helper"
 module TokenAuth
   RSpec.describe ConfigurationToken, type: :model do
     def valid_attributes
-      { participant_id: 1 }
+      { entity_id: 1 }
     end
 
     def create_token!

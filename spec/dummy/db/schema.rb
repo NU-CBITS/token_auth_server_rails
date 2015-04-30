@@ -17,23 +17,23 @@ ActiveRecord::Schema.define(version: 20150428211137) do
   enable_extension "plpgsql"
 
   create_table "token_auth_authentication_tokens", force: :cascade do |t|
-    t.integer "participant_id",                           null: false
-    t.string  "value",          limit: 32,                null: false
-    t.boolean "is_enabled",                default: true, null: false
-    t.string  "uuid",           limit: 36,                null: false
-    t.string  "client_uuid",                              null: false
+    t.integer "entity_id",                             null: false
+    t.string  "value",       limit: 32,                null: false
+    t.boolean "is_enabled",             default: true, null: false
+    t.string  "uuid",        limit: 36,                null: false
+    t.string  "client_uuid",                           null: false
   end
 
   add_index "token_auth_authentication_tokens", ["client_uuid"], name: "index_token_auth_authentication_tokens_on_client_uuid", unique: true, using: :btree
-  add_index "token_auth_authentication_tokens", ["participant_id"], name: "index_token_auth_authentication_tokens_on_participant_id", unique: true, using: :btree
+  add_index "token_auth_authentication_tokens", ["entity_id"], name: "index_token_auth_authentication_tokens_on_entity_id", unique: true, using: :btree
   add_index "token_auth_authentication_tokens", ["value"], name: "index_token_auth_authentication_tokens_on_value", unique: true, using: :btree
 
   create_table "token_auth_configuration_tokens", force: :cascade do |t|
-    t.datetime "expires_at",     null: false
-    t.string   "value",          null: false
-    t.integer  "participant_id", null: false
+    t.datetime "expires_at", null: false
+    t.string   "value",      null: false
+    t.integer  "entity_id",  null: false
   end
 
-  add_index "token_auth_configuration_tokens", ["participant_id"], name: "index_token_auth_configuration_tokens_on_participant_id", unique: true, using: :btree
+  add_index "token_auth_configuration_tokens", ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true, using: :btree
 
 end

@@ -4,8 +4,8 @@ module TokenAuth
     TOKEN_LENGTH = 32
     UUID_LENGTH = 36
 
-    validates :participant_id, :value, :uuid, :client_uuid, presence: true
-    validates :value, :participant_id, :client_uuid, uniqueness: true
+    validates :entity_id, :value, :uuid, :client_uuid, presence: true
+    validates :value, :entity_id, :client_uuid, uniqueness: true
     validates :value, length: { is: TOKEN_LENGTH }
     validates :uuid, length: { is: UUID_LENGTH }
     validates :is_enabled, inclusion: { in: [true, false] }

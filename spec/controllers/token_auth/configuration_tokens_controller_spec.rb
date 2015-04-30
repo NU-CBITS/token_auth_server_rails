@@ -7,7 +7,7 @@ module TokenAuth
     def config_token
       @config_token ||= (
         token = instance_double("TokenAuth::ConfigurationToken",
-                                participant_id: 1)
+                                entity_id: 1)
         allow(token).to receive_message_chain("class.model_name.human")
           .and_return("Configuration token")
 
@@ -45,7 +45,7 @@ module TokenAuth
 
     describe "DELETE destroy" do
       before do
-        allow(ConfigurationToken).to receive(:find_by_participant_id)
+        allow(ConfigurationToken).to receive(:find_by_entity_id)
           .and_return(config_token)
       end
 

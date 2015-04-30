@@ -17,7 +17,7 @@ RSpec.feature "Participant tokens", type: :feature do
   end
 
   scenario "User destroys a configuration token" do
-    TokenAuth::ConfigurationToken.create participant_id: 1
+    TokenAuth::ConfigurationToken.create entity_id: 1
     visit "/token_auth/participants/1/tokens"
 
     within "#config-token" do
@@ -33,7 +33,7 @@ RSpec.feature "Participant tokens", type: :feature do
   end
 
   scenario "User disables an authentication token" do
-    TokenAuth::AuthenticationToken.create participant_id: 1, client_uuid: 415
+    TokenAuth::AuthenticationToken.create entity_id: 1, client_uuid: 415
     visit "/token_auth/participants/1/tokens"
 
     within "#auth-token" do
@@ -49,7 +49,7 @@ RSpec.feature "Participant tokens", type: :feature do
   end
 
   scenario "User enables an authentication token" do
-    TokenAuth::AuthenticationToken.create(participant_id: 1,
+    TokenAuth::AuthenticationToken.create(entity_id: 1,
                                           client_uuid: 415,
                                           is_enabled: false)
     visit "/token_auth/participants/1/tokens"
@@ -67,7 +67,7 @@ RSpec.feature "Participant tokens", type: :feature do
   end
 
   scenario "User destroys an authentication token" do
-    TokenAuth::AuthenticationToken.create participant_id: 1, client_uuid: 415
+    TokenAuth::AuthenticationToken.create entity_id: 1, client_uuid: 415
     visit "/token_auth/participants/1/tokens"
 
     within "#auth-token" do

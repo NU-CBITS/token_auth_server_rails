@@ -7,8 +7,8 @@ module TokenAuth
                      # $ )
     TOKEN_LENGTH = 6
 
-    validates :expires_at, :participant_id, :value, presence: true
-    validates :value, :participant_id, uniqueness: true
+    validates :expires_at, :entity_id, :value, presence: true
+    validates :value, :entity_id, uniqueness: true
 
     before_validation :set_value, :set_expires_at, on: :create
 
@@ -27,7 +27,7 @@ module TokenAuth
       return nil if expired?
 
       authentication_token = AuthenticationToken
-                             .new(participant_id: participant_id,
+                             .new(entity_id: entity_id,
                                   client_uuid: client_uuid)
       transaction do
         authentication_token.save! && destroy!
