@@ -24,7 +24,7 @@ module TokenAuth
       context "when the token updates successfully" do
         it "sets a notice" do
           allow(auth_token).to receive(:update) { true }
-          patch :update, id: 1
+          patch :update, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:notice]).to eq "Successfully saved Authentication token"
@@ -36,7 +36,7 @@ module TokenAuth
           allow(auth_token).to receive(:update) { false }
           allow(auth_token).to receive_message_chain("errors.full_messages")
             .and_return([])
-          patch :update, id: 1
+          patch :update, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to save/)
@@ -48,7 +48,7 @@ module TokenAuth
       context "when the token destroys successfully" do
         it "sets a notice" do
           allow(auth_token).to receive(:destroy) { true }
-          delete :destroy, id: 1
+          delete :destroy, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:notice])
@@ -61,7 +61,7 @@ module TokenAuth
           allow(auth_token).to receive(:destroy) { false }
           allow(auth_token).to receive_message_chain("errors.full_messages")
             .and_return([])
-          delete :destroy, id: 1
+          delete :destroy, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to destroy/)

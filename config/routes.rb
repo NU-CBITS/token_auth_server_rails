@@ -1,5 +1,5 @@
 TokenAuth::Engine.routes.draw do
-  scope '/participants/:id' do
+  scope '/entities/:entity_id' do
     resource :authentication_token, only: [:update, :destroy]
     resource :configuration_token, only: [:create, :destroy]
     resources :tokens, only: :index

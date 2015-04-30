@@ -2,7 +2,7 @@ module TokenAuth
   # Manages Configuration Tokens.
   class ConfigurationTokensController < ApplicationController
     def create
-      token = ConfigurationToken.new(entity_id: params[:id])
+      token = ConfigurationToken.new(entity_id: params[:entity_id])
 
       if token.save
         redirect_to tokens_url(token.entity_id),
@@ -17,7 +17,7 @@ module TokenAuth
     end
 
     def destroy
-      token = ConfigurationToken.find_by_entity_id(params[:id])
+      token = ConfigurationToken.find_by_entity_id(params[:entity_id])
 
       if token.destroy
         redirect_to tokens_url(token.entity_id),

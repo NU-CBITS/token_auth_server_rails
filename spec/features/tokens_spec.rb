@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Participant tokens", type: :feature do
   scenario "User creates a configuration token" do
-    visit "/token_auth/participants/1/tokens"
+    visit "/token_auth/entities/1/tokens"
 
     within "#config-token" do
       click_on "Create"
@@ -18,7 +18,7 @@ RSpec.feature "Participant tokens", type: :feature do
 
   scenario "User destroys a configuration token" do
     TokenAuth::ConfigurationToken.create entity_id: 1
-    visit "/token_auth/participants/1/tokens"
+    visit "/token_auth/entities/1/tokens"
 
     within "#config-token" do
       click_on "Destroy"
@@ -34,7 +34,7 @@ RSpec.feature "Participant tokens", type: :feature do
 
   scenario "User disables an authentication token" do
     TokenAuth::AuthenticationToken.create entity_id: 1, client_uuid: 415
-    visit "/token_auth/participants/1/tokens"
+    visit "/token_auth/entities/1/tokens"
 
     within "#auth-token" do
       click_on "Disable"
@@ -52,7 +52,7 @@ RSpec.feature "Participant tokens", type: :feature do
     TokenAuth::AuthenticationToken.create(entity_id: 1,
                                           client_uuid: 415,
                                           is_enabled: false)
-    visit "/token_auth/participants/1/tokens"
+    visit "/token_auth/entities/1/tokens"
 
     within "#auth-token" do
       click_on "Enable"
@@ -68,7 +68,7 @@ RSpec.feature "Participant tokens", type: :feature do
 
   scenario "User destroys an authentication token" do
     TokenAuth::AuthenticationToken.create entity_id: 1, client_uuid: 415
-    visit "/token_auth/participants/1/tokens"
+    visit "/token_auth/entities/1/tokens"
 
     within "#auth-token" do
       click_on "Destroy"
