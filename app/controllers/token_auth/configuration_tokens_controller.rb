@@ -2,14 +2,14 @@ module TokenAuth
   # Manages Configuration Tokens.
   class ConfigurationTokensController < ApplicationController
     def create
-      token = ConfigurationToken.new(participant_id: params[:id])
+      token = ConfigurationToken.new(entity_id: params[:entity_id])
 
       if token.save
-        redirect_to tokens_url(token.participant_id),
+        redirect_to tokens_url(token.entity_id),
                     notice: t("activerecord.success_saving",
                               name: token.class.model_name.human)
       else
-        redirect_to tokens_url(token.participant_id),
+        redirect_to tokens_url(token.entity_id),
                     alert: t("activerecord.failure_saving",
                              name: token.class.model_name.human,
                              errors: errors_on(token))
@@ -17,14 +17,14 @@ module TokenAuth
     end
 
     def destroy
-      token = ConfigurationToken.find_by_participant_id(params[:id])
+      token = ConfigurationToken.find_by_entity_id(params[:entity_id])
 
       if token.destroy
-        redirect_to tokens_url(token.participant_id),
+        redirect_to tokens_url(token.entity_id),
                     notice: t("activerecord.success_destroying",
                               name: token.class.model_name.human)
       else
-        redirect_to tokens_url(token.participant_id),
+        redirect_to tokens_url(token.entity_id),
                     alert: t("activerecord.failure_destroying",
                              name: token.class.model_name.human,
                              errors: errors_on(token))

@@ -3,7 +3,7 @@ require "rails_helper"
 module TokenAuth
   RSpec.describe AuthenticationToken, type: :model do
     def valid_attributes
-      { participant_id: 2, client_uuid: 321 }
+      { entity_id: 2, client_uuid: 321 }
     end
 
     describe "validations" do

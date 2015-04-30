@@ -1,4 +1,4 @@
-<h2>Manage tokens for <%= @participant_id %></h2>
+<h2>Manage tokens for <%= @entity || @entity_id %></h2>
 
 <table class="table">
   <% if !@authentication_token %>
@@ -10,7 +10,7 @@
         <% if @configuration_token %>
           Expires in <%= time_ago_in_words @configuration_token.expires_at %>
         <% else %>
-          <%= button_to 'Create', configuration_token_path(@participant_id), class: "btn btn-default" %>
+          <%= button_to 'Create', configuration_token_path(@entity_id), class: "btn btn-default" %>
         <% end %>
       </td>
       <% if @configuration_token %>
@@ -19,7 +19,7 @@
           <p><small>case insensitive</small></p>
         </td>
         <td>
-          <%= button_to 'Destroy', configuration_token_path(@participant_id), method: :delete, class: "btn btn-warning" %>
+          <%= button_to 'Destroy', configuration_token_path(@entity_id), method: :delete, class: "btn btn-warning" %>
         </td>
       <% end %>
     </tr>
@@ -36,13 +36,13 @@
       </td>
       <td>
         <% if @authentication_token.is_enabled? %>
-          <%= button_to 'Disable', authentication_token_path(@participant_id), method: :patch, class: "btn btn-warning", params: { is_enabled: false } %>
+          <%= button_to 'Disable', authentication_token_path(@entity_id), method: :patch, class: "btn btn-warning", params: { is_enabled: false } %>
         <% else %>
-          <%= button_to 'Enable', authentication_token_path(@participant_id), method: :patch, class: "btn btn-info", params: { is_enabled: true } %>
+          <%= button_to 'Enable', authentication_token_path(@entity_id), method: :patch, class: "btn btn-info", params: { is_enabled: true } %>
         <% end %>
       </td>
       <td>
-        <%= button_to 'Destroy', authentication_token_path(@participant_id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+        <%= button_to 'Destroy', authentication_token_path(@entity_id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
       </td>
     </tr>
   <% end %>

@@ -7,7 +7,7 @@ module TokenAuth
     def config_token
       @config_token ||= (
         token = instance_double("TokenAuth::ConfigurationToken",
-                                participant_id: 1)
+                                entity_id: 1)
         allow(token).to receive_message_chain("class.model_name.human")
           .and_return("Configuration token")
 
@@ -23,7 +23,7 @@ module TokenAuth
       context "when the token saves successfully" do
         it "sets a notice" do
           allow(config_token).to receive(:save) { true }
-          post :create, id: 1
+          post :create, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:notice]).to eq "Successfully saved Configuration token"
@@ -35,7 +35,7 @@ module TokenAuth
           allow(config_token).to receive(:save) { false }
           allow(config_token).to receive_message_chain("errors.full_messages")
             .and_return([])
-          post :create, id: 1
+          post :create, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to save/)
@@ -45,14 +45,14 @@ module TokenAuth
 
     describe "DELETE destroy" do
       before do
-        allow(ConfigurationToken).to receive(:find_by_participant_id)
+        allow(ConfigurationToken).to receive(:find_by_entity_id)
           .and_return(config_token)
       end
 
       context "when the token destroys successfully" do
         it "sets a notice" do
           allow(config_token).to receive(:destroy) { true }
-          delete :destroy, id: 1
+          delete :destroy, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:notice]).to match(/Successfully destroyed/)
@@ -64,7 +64,7 @@ module TokenAuth
           allow(config_token).to receive(:destroy) { false }
           allow(config_token).to receive_message_chain("errors.full_messages")
             .and_return([])
-          delete :destroy, id: 1
+          delete :destroy, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to destroy/)
