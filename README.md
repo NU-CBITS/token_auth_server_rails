@@ -93,3 +93,19 @@ After generating a configuration token, test authentication token generation:
 ```
 curl --data "data[clientUuid]=asdf&configurationToken=4C3LM9" http://localhost:3000/token_auth/api/authentication_tokens
 ```
+
+## Development
+
+Clone the repository and install dependencies:
+
+```
+git clone git@github.com:cbitstech/token_auth_server_rails.git
+bundle
+```
+
+Run the unit tests and linters for this Engine:
+
+```
+RAILS_ENV=test bin/rake db:create db:migrate
+bin/rake
+```
