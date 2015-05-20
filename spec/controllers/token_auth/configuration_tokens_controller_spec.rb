@@ -49,6 +49,16 @@ module TokenAuth
           .and_return(config_token)
       end
 
+      context "when the token is not found" do
+        it "sets an alert" do
+          allow(ConfigurationToken).to receive(:find_by_entity_id) { nil }
+          delete :destroy, entity_id: 1
+
+          expect(response).to redirect_to tokens_url(1)
+          expect(flash[:alert]).to match(/Unable to find/)
+        end
+      end
+
       context "when the token destroys successfully" do
         it "sets a notice" do
           allow(config_token).to receive(:destroy) { true }

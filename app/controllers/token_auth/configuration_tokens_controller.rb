@@ -5,11 +5,11 @@ module TokenAuth
       token = ConfigurationToken.new(entity_id: params[:entity_id])
 
       if token.save
-        redirect_to tokens_url(token.entity_id),
+        redirect_to tokens_index,
                     notice: t("activerecord.success_saving",
                               name: token.class.model_name.human)
       else
-        redirect_to tokens_url(token.entity_id),
+        redirect_to tokens_index,
                     alert: t("activerecord.failure_saving",
                              name: token.class.model_name.human,
                              errors: errors_on(token))
@@ -19,19 +19,27 @@ module TokenAuth
     def destroy
       token = ConfigurationToken.find_by_entity_id(params[:entity_id])
 
-      if token.destroy
-        redirect_to tokens_url(token.entity_id),
+      if token.nil?
+        redirect_to tokens_index,
+                    alert: t("activerecord.cannot_find",
+                             name: ConfigurationToken.model_name.human)
+      elsif token.destroy
+        redirect_to tokens_index,
                     notice: t("activerecord.success_destroying",
-                              name: token.class.model_name.human)
+                              name: ConfigurationToken.model_name.human)
       else
-        redirect_to tokens_url(token.entity_id),
+        redirect_to tokens_index,
                     alert: t("activerecord.failure_destroying",
-                             name: token.class.model_name.human,
+                             name: ConfigurationToken.model_name.human,
                              errors: errors_on(token))
       end
     end
 
     private
+
+    def tokens_index
+      tokens_url params[:entity_id]
+    end
 
     def errors_on(model)
       model.errors.full_messages.join ", "
