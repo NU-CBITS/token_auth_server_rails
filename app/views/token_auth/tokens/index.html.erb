@@ -8,18 +8,24 @@
       </td>
       <td>
         <% if @configuration_token %>
-          Expires in <%= time_ago_in_words @configuration_token.expires_at %>
+          <% if @configuration_token.expired? %>
+            <span class="label label-warning">Expired</span>
+          <% else %>
+            Expires in <%= time_ago_in_words @configuration_token.expires_at %>
+          <% end %>
         <% else %>
           <%= button_to 'Create', configuration_token_path(@entity_id), class: "btn btn-default" %>
         <% end %>
       </td>
       <% if @configuration_token %>
         <td>
-          Value <mark><%= @configuration_token.value %></mark>
-          <p><small>case insensitive</small></p>
+          <% unless @configuration_token.expired? %>
+            Value <mark><%= @configuration_token.value %></mark>
+            <p><small>case insensitive</small></p>
+          <% end %>
         </td>
         <td>
-          <%= button_to 'Destroy', configuration_token_path(@entity_id), method: :delete, class: "btn btn-warning" %>
+          <%= button_to 'Destroy', token_auth.configuration_token_path(@entity_id), method: :delete, class: "btn btn-warning" %>
         </td>
       <% end %>
     </tr>
