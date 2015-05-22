@@ -1,5 +1,6 @@
 en:
   activerecord:
+    cannot_find: Unable to find %{name}
     success_saving: Successfully saved %{name}
     failure_saving: "Unable to save %{name}: %{errors}"
     success_destroying: Successfully destroyed %{name}
