@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.4 - 2015-07-01
+
+* relax Rails version dependency
+
 ## 0.0.3 - 2015-05-26
 
 * fix display of expired Configuration Tokens

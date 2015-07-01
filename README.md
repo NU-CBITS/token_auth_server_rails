@@ -29,7 +29,7 @@ Add the gem to your Gemfile:
 
 gem 'token_auth',
     git: 'https://github.com/cbitstech/token_auth_server_rails',
-    tag: '0.0.3'
+    tag: '0.0.4'
 ```
 
 Install it:
