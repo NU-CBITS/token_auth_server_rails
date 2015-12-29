@@ -24,10 +24,10 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4"
 
   s.add_development_dependency "pg"
-  s.add_development_dependency "rspec-rails", "~> 3.0"
-  s.add_development_dependency "capybara", "~> 2.4"
+  s.add_development_dependency "rspec-rails", "~> 3.4"
+  s.add_development_dependency "capybara", "~> 2.5"
   s.add_development_dependency "brakeman"
   s.add_development_dependency "rubocop"
   s.add_development_dependency "mdl"
-  s.add_development_dependency "simplecov", "~> 0.9.1"
+  s.add_development_dependency "simplecov", "~> 0.11"
 end

@@ -1,12 +1,13 @@
 # This file is copied to spec/ when you run "rails generate rspec:install"
+
+require "simplecov"
+SimpleCov.minimum_coverage 97
+SimpleCov.start "rails"
+
 ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
 require File.expand_path("../dummy/config/environment", __FILE__)
 require "rspec/rails"
-
-require "simplecov"
-SimpleCov.minimum_coverage 99
-SimpleCov.start "rails"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
