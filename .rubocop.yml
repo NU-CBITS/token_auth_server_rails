@@ -17,5 +17,12 @@ Documentation:
 MethodLength:
   Max: 15
 
+ModuleLength:
+  Exclude:
+    - spec/**/*
+
+SpaceInsideStringInterpolation:
+  EnforcedStyle: space
+
 StringLiterals:
   EnforcedStyle: double_quotes

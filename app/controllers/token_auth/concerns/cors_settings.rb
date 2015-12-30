@@ -2,8 +2,6 @@ module TokenAuth
   module Concerns
     # Allow cross-domain requests.
     module CorsSettings
-      extend ActiveSupport::Concern
-
       def cors_set_access_control_headers(allow:)
         headers["Access-Control-Allow-Origin"] = "*"
         headers["Access-Control-Allow-Methods"] = allow

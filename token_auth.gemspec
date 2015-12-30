@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
                 "README.md"]
 
   s.add_dependency "rails", "~> 4"
+  s.add_dependency "active_model_serializers"
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.4"
