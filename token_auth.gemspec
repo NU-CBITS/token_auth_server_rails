@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = TokenAuth::VERSION
   s.authors     = ["Eric Carty-Fickes"]
   s.email       = ["ericcf@northwestern.edu"]
-  s.homepage    = "https://github.com/cbitstech/token_auth"
+  s.homepage    = "https://github.com/NU-CBITS/token_auth"
   s.summary     = "Rails engine for authenticating clients anonymously."
   s.description = "A Rails engine that allows for configuring secure " \
                   "communication between client and server via a shared " \
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
                 "README.md"]
 
   s.add_dependency "rails", "~> 4"
-  s.add_dependency "active_model_serializers"
+  s.add_dependency "active_model_serializers", "~> 0.10.0.rc3"
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails", "~> 3.4"
