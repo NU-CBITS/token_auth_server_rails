@@ -10,5 +10,6 @@ TokenAuth::Engine.routes.draw do
       to: 'authentication_tokens#options',
       via: :options
     resources :authentication_tokens, only: :create
+    resources :payloads, only: [:index, :create]
   end
 end

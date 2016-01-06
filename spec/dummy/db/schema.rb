@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428211137) do
+ActiveRecord::Schema.define(version: 20151229184253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,5 +35,17 @@ ActiveRecord::Schema.define(version: 20150428211137) do
   end
 
   add_index "token_auth_configuration_tokens", ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true, using: :btree
+
+  create_table "token_auth_synchronizable_resources", force: :cascade do |t|
+    t.string   "uuid",                                     null: false
+    t.integer  "entity_id",                                null: false
+    t.string   "entity_id_attribute_name",                 null: false
+    t.string   "name",                                     null: false
+    t.string   "class_name",                               null: false
+    t.boolean  "is_pullable",              default: false, null: false
+    t.boolean  "is_pushable",              default: false, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
 end
