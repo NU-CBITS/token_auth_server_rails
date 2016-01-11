@@ -15,10 +15,14 @@ module TokenAuth
     # Returns case insensitive match.
     # rubocop:disable Rails/FindBy
     def self.find_match(value)
-      return nil unless value.is_a?(String) && value.length == TOKEN_LENGTH
+      return nil unless value.is_a?(String)
+
+      query = value.gsub(/[\s]+/, "")
+
+      return nil unless query.length == TOKEN_LENGTH
 
       where(arel_table[:expires_at].gt(Time.zone.now))
-        .where(arel_table[:value].matches(value))
+        .where(arel_table[:value].matches(query))
         .first
     end
     # rubocop:enable Rails/FindBy

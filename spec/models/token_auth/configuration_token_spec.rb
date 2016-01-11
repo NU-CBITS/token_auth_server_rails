@@ -35,6 +35,14 @@ module TokenAuth
         query = "a" * ConfigurationToken::TOKEN_LENGTH
         expect(ConfigurationToken.find_match(query)).not_to be_nil
       end
+
+      it "returns records with mismatched whitespace in the query" do
+        token = create_token!
+        query = token.value.clone
+        query.insert(2, "\t").insert(4, "   ")
+
+        expect(ConfigurationToken.find_match(query)).not_to be_nil
+      end
     end
 
     describe "#make_authentication_token" do
