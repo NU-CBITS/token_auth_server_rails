@@ -10,6 +10,10 @@ module TokenAuth
         controller.cors_set_access_control_headers(allow: "POST, OPTIONS")
       end
 
+      def options
+        render json: {}, status: 200
+      end
+
       def create
         if configuration_token && authentication_token
           render(json: {
