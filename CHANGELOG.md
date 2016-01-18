@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0 - 2016-01-17
+
+* modify Payloads API to work with client lib
+* add OPTIONS action for clients that require it
+* allow for config tokens with extra whitespace
+* ensure proper version of AMS is used
+* implement payload synchronization api
+
 ## 0.0.4 - 2015-07-01
 
 * relax Rails version dependency
