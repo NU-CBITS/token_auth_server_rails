@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1 - 2016-01-17
+
+* configure with latest RuboCop and fix
+
 ## 0.1.0 - 2016-01-17
 
 * modify Payloads API to work with client lib
