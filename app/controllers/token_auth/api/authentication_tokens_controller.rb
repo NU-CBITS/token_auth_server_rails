@@ -7,7 +7,9 @@ module TokenAuth
       include Concerns::CorsSettings
 
       after_action do |controller|
-        controller.cors_set_access_control_headers(allow: "POST, OPTIONS")
+        controller.cors_set_access_control_headers(
+          allow_methods: "POST, OPTIONS"
+        )
       end
 
       def options

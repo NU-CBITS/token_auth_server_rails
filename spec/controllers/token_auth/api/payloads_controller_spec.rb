@@ -96,13 +96,21 @@ module TokenAuth
         end
       end
 
+      describe "OPTIONS" do
+        it "responds with 200" do
+          process :options, "OPTIONS"
+
+          expect(response.status).to eq 200
+        end
+      end
+
       describe "POST create" do
         let(:invalid_authorization_post) do
           [auth_prefix, "method=\"POST\"", "signature=\"asdf\""].join(",")
         end
         let(:valid_signature_post) do
           OpenSSL::Digest::MD5.hexdigest(
-            auth_token.client_uuid + "12345" + "9876" \
+            "[]" + auth_token.client_uuid + "12345" + "9876" \
             "https://api.example.com/payloads.json" + "POST" + auth_token.value
           )
         end
@@ -111,6 +119,19 @@ module TokenAuth
             auth_prefix,
             "method=\"POST\"",
             "signature=\"#{ valid_signature_post }\""
+          ].join(",")
+        end
+        let(:valid_signature_bad_payload_post) do
+          OpenSSL::Digest::MD5.hexdigest(
+            "\"baz\"" + auth_token.client_uuid + "12345" + "9876" \
+            "https://api.example.com/payloads.json" + "POST" + auth_token.value
+          )
+        end
+        let(:valid_authorization_bad_payload_post) do
+          [
+            auth_prefix,
+            "method=\"POST\"",
+            "signature=\"#{ valid_signature_bad_payload_post }\""
           ].join(",")
         end
 
@@ -143,18 +164,19 @@ module TokenAuth
         context "when the signature matches" do
           context "and the payload is malformed" do
             it "responds with 400" do
-              @request.headers["Authorization"] = valid_authorization_post
-              post :create
+              @request.headers["Authorization"] =
+                valid_authorization_bad_payload_post
+              post :create, data: "baz"
 
               expect(response.status).to eq 400
             end
           end
 
-          it "responds with 200" do
+          it "responds with 201" do
             @request.headers["Authorization"] = valid_authorization_post
             post :create, data: []
 
-            expect(response.status).to eq 200
+            expect(response.status).to eq 201
           end
         end
       end

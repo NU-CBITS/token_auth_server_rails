@@ -10,7 +10,10 @@ module TokenAuth
                   with: :unauthorized
 
       after_action do |controller|
-        controller.cors_set_access_control_headers(allow: "GET, POST, OPTIONS")
+        controller.cors_set_access_control_headers(
+          allow_methods: "GET, POST, OPTIONS",
+          allow_headers: "Authorization"
+        )
       end
 
       def index
@@ -23,13 +26,17 @@ module TokenAuth
         render json: resources
       end
 
+      def options
+        render json: {}, status: 200
+      end
+
       def create
         authenticate!
         entity_id = @authentication_token.entity_id
         payload = Payload.new(entity_id: entity_id)
         payload.save params[:data]
 
-        render json: payload.valid_resources
+        render json: payload.valid_resources, status: 201
 
       rescue TokenAuth::Payload::MalformedPayloadError
         render json: {}, status: 400
@@ -50,14 +57,14 @@ module TokenAuth
 
       def calculate_signature
         OpenSSL::Digest::MD5.hexdigest([
-          params[:data],
+          params[:data] ? params[:data].to_json : nil,
           @metadata[:key],
           @metadata[:nonce],
           @metadata[:timestamp],
           @metadata[:url],
           @metadata[:method],
           @authentication_token.value
-        ].join)
+        ].compact.join)
       end
 
       def split_header

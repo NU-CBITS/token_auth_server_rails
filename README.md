@@ -77,7 +77,7 @@ module Api
     include TokenAuth::Concerns::ApiResources
 
     after_action do |controller|
-      controller.cors_set_access_control_headers(allow: "GET, OPTIONS")
+      controller.cors_set_access_control_headers(allow_methods: "GET, OPTIONS")
     end
 
     def show
