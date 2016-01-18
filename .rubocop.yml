@@ -5,7 +5,10 @@ AllCops:
     - db/**/*
     - spec/dummy/**/*
     - vendor/**/*
-  RunRailsCops: true
+  TargetRubyVersion: 2.2
+
+Rails:
+  Enabled: true
 
 AbcSize:
   Max: 25

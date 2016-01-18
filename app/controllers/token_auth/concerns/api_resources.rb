@@ -17,7 +17,7 @@ module TokenAuth
         rescue_from Api::Unauthorized, with: :unauthorized
       end
 
-      AUTH_HEADER = "X-AUTH-TOKEN"
+      AUTH_HEADER = "X-AUTH-TOKEN".freeze
 
       def options
         render nothing: true

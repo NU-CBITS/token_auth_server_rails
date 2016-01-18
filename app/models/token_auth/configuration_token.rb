@@ -4,7 +4,7 @@ module TokenAuth
     VALID_PERIOD = 4.hours
     SAMPLE_SET = %w( A B C D E F H J K L M N P Q R S T U V W X Y Z
                      2 3 4 5 7 8 9
-                     # $ )
+                     # $ ).freeze
     TOKEN_LENGTH = 6
 
     validates :expires_at, :entity_id, :value, presence: true

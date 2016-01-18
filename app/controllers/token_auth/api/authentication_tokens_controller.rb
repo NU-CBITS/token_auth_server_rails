@@ -2,7 +2,7 @@ module TokenAuth
   module Api
     # API to manage Authentication Tokens.
     class AuthenticationTokensController < ::TokenAuth::Api::BaseController
-      RESOURCE_TYPE = "authenticationTokens"
+      RESOURCE_TYPE = "authenticationTokens".freeze
 
       include Concerns::CorsSettings
 
