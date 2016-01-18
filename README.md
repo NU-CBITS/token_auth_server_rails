@@ -28,8 +28,8 @@ Add the gem to your Gemfile:
 # Gemfile
 
 gem 'token_auth',
-    git: 'https://github.com/cbitstech/token_auth_server_rails',
-    tag: '0.0.4'
+    git: 'https://github.com/NU-CBITS/token_auth_server_rails',
+    tag: '0.1.0'
 ```
 
 Install it:
@@ -99,7 +99,7 @@ curl --data "data[clientUuid]=asdf&configurationToken=4C3LM9" http://localhost:3
 Clone the repository and install dependencies:
 
 ```
-git clone git@github.com:cbitstech/token_auth_server_rails.git
+git clone git@github.com:NU-CBITS/token_auth_server_rails.git
 bundle
 ```
 
