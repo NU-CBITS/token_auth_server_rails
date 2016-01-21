@@ -65,6 +65,14 @@ module TokenAuth
 
             expect(response.status).to eq 401
           end
+
+          it "sets CORS headers" do
+            @request.headers["Authorization"] = invalid_authorization_get
+            get :index
+
+            expect(response.headers["Access-Control-Allow-Origin"])
+              .not_to be_nil
+          end
         end
 
         context "when the signature matches" do
@@ -158,6 +166,14 @@ module TokenAuth
             post :create
 
             expect(response.status).to eq 401
+          end
+
+          it "sets CORS headers" do
+            @request.headers["Authorization"] = invalid_authorization_post
+            post :create
+
+            expect(response.headers["Access-Control-Allow-Origin"])
+              .not_to be_nil
           end
         end
 

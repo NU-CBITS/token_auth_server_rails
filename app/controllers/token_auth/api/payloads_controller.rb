@@ -9,7 +9,7 @@ module TokenAuth
       rescue_from TokenAuth::Concerns::ApiResources::Api::Unauthorized,
                   with: :unauthorized
 
-      after_action do |controller|
+      before_action do |controller|
         controller.cors_set_access_control_headers(
           allow_methods: "GET, POST, OPTIONS",
           allow_headers: "Authorization"
