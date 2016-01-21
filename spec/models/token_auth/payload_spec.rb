@@ -29,7 +29,7 @@ module TokenAuth
         end
         let(:params) { [{ type: "things", uuid: "123", foo: "bar" }] }
         let(:payload) { Payload.new(entity_id: 1) }
-        let(:mock_thing) { double("mock thing", serialize: { x: 1 }) }
+        let(:mock_thing) { double("mock thing") }
 
         context "when the entities params are malformed" do
           it "registers an error" do
@@ -50,7 +50,7 @@ module TokenAuth
 
             expect(payload.errors.length).to eq 0
             expect(payload.valid_resources.length).to eq 1
-            expect(payload.valid_resources.first).to eq(x: 1)
+            expect(payload.valid_resources.first).to eq(mock_thing)
           end
         end
 
