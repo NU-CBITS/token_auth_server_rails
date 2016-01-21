@@ -36,6 +36,7 @@ module TokenAuth
         payload = Payload.new(entity_id: entity_id)
         payload.save params[:data]
 
+        headers["Errors"] = payload.errors.join(", ")
         render json: payload.valid_resources, status: 201
 
       rescue TokenAuth::Payload::MalformedPayloadError

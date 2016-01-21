@@ -178,6 +178,24 @@ module TokenAuth
 
             expect(response.status).to eq 201
           end
+
+          context "and there is a validation error" do
+            it "includes Errors in the response header" do
+              @request.headers["Authorization"] = valid_authorization_post
+              payload = instance_double(
+                Payload,
+                save: nil,
+                valid_resources: [],
+                errors: ["baz"]
+              )
+              allow(Payload).to receive(:new) { payload }
+
+              post :create, data: []
+
+              expect(response.status).to eq 201
+              expect(response.headers["Errors"]).to eq "baz"
+            end
+          end
         end
       end
     end

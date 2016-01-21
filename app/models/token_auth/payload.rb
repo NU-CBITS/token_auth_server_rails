@@ -55,7 +55,7 @@ module TokenAuth
       resource = klass.find_or_initialize_by(uuid: attributes.delete("uuid"))
 
       if resource.update(attributes)
-        @valid_resources << resource.serialize
+        @valid_resources << resource
       else
         @errors << resource.errors.full_messages.join(", ")
       end
