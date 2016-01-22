@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2016-01-22
+
+* ensure CORS headers are set on 401 responses
+* rewrite serialization and errors to work with AMS
+
 ## 0.1.1 - 2016-01-17
 
 * configure with latest RuboCop and fix
