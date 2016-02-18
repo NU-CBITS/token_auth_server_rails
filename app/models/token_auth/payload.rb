@@ -21,7 +21,7 @@ module TokenAuth
     end
 
     def save(entities_params)
-      fail MalformedPayloadError unless entities_params.respond_to?(:each)
+      raise MalformedPayloadError unless entities_params.respond_to?(:each)
 
       entities_params.each do |entity_params|
         type = self.class.resource_type(entity_params)

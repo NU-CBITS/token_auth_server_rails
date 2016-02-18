@@ -77,7 +77,14 @@ module TokenAuth
 
     describe "initialization" do
       it "sets the expiration date" do
-        expect(create_token!.expires_at).to be > Time.zone.now
+        period = ConfigurationToken.valid_period
+        ConfigurationToken.valid_period = 1.week
+
+        token = create_token!
+        expect(token.expires_at).to be > Time.zone.now + 6.days
+        expect(token.expires_at).to be < Time.zone.now + 8.days
+
+        ConfigurationToken.valid_period = period
       end
 
       it "sets the token value" do

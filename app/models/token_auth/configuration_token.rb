@@ -1,7 +1,8 @@
 module TokenAuth
   # A single use human readable token for use with client configuration.
   class ConfigurationToken < ActiveRecord::Base
-    VALID_PERIOD = 4.hours
+    mattr_accessor :valid_period
+    self.valid_period = 4.hours
     SAMPLE_SET = %w( A B C D E F H J K L M N P Q R S T U V W X Y Z
                      2 3 4 5 7 8 9
                      # $ ).freeze
@@ -56,7 +57,7 @@ module TokenAuth
     end
 
     def set_expires_at
-      self.expires_at = Time.zone.now + VALID_PERIOD
+      self.expires_at = Time.zone.now + self.class.valid_period
     end
   end
 end
