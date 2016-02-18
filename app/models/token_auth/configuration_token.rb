@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TokenAuth
   # A single use human readable token for use with client configuration.
   class ConfigurationToken < ActiveRecord::Base

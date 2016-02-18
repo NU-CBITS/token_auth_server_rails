@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ControllerHelpers
   def create_invalid_credentials
     request.headers[TokenAuth::Concerns::ApiResources::AUTH_HEADER] = "oops"

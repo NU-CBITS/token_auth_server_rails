@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module TokenAuth
   module Concerns
     # Behavior related to authentication and CORS.
@@ -17,7 +18,7 @@ module TokenAuth
         rescue_from Api::Unauthorized, with: :unauthorized
       end
 
-      AUTH_HEADER = "X-AUTH-TOKEN".freeze
+      AUTH_HEADER = "X-AUTH-TOKEN"
 
       def options
         render nothing: true
