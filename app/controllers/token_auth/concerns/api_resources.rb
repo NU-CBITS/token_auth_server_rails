@@ -31,7 +31,7 @@ module TokenAuth
                                 .find_enabled(client_uuid: client_uuid,
                                               value: auth_header)
 
-        fail Api::Unauthorized unless @authentication_token
+        raise Api::Unauthorized unless @authentication_token
       end
 
       def client_uuid

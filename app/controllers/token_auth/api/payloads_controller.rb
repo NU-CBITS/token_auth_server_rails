@@ -53,7 +53,7 @@ module TokenAuth
 
         return if @authentication_token
 
-        fail TokenAuth::Concerns::ApiResources::Api::Unauthorized
+        raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
       end
 
       def calculate_signature
@@ -70,7 +70,7 @@ module TokenAuth
 
       def split_header
         if request.headers[:Authorization].nil?
-          fail TokenAuth::Concerns::ApiResources::Api::Unauthorized
+          raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
         end
 
         auth_headers = request.headers[:Authorization].split(",")
@@ -86,7 +86,7 @@ module TokenAuth
 
         return if @metadata[:signature] == calculate_signature
 
-        fail TokenAuth::Concerns::ApiResources::Api::Unauthorized
+        raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
       end
 
       def find_pullable_resources(entity_id)

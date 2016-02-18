@@ -37,7 +37,7 @@ end
 desc "Run MarkDown lint"
 task :mdl do
   results = `#{ File.join(dir, "bin", "mdl") } #{ File.join(dir, ".") }`
-  if results.strip.length > 0
+  unless results.strip.empty?
     puts results
     exit 1
   end
