@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 - 2016-02-18
+
+* allow for config token valid period to be modified
+
 ## 0.1.2 - 2016-01-22
 
 * ensure CORS headers are set on 401 responses
