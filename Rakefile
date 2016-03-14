@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 begin
   require "bundler/setup"
 rescue LoadError
@@ -36,7 +37,7 @@ end
 
 desc "Run MarkDown lint"
 task :mdl do
-  results = `#{ File.join(dir, "bin", "mdl") } #{ File.join(dir, ".") }`
+  results = `#{ File.join(dir, "bin", "mdl") } #{ File.join(dir, "README.md") }`
   unless results.strip.empty?
     puts results
     exit 1

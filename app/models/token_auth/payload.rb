@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module TokenAuth
   # An inbound resource. Inbound resource requests are validated and an
   # attempt is made to upsert them.

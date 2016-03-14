@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module TokenAuth
   module Api
     # API to manage Authentication Tokens.
     class AuthenticationTokensController < ::TokenAuth::Api::BaseController
-      RESOURCE_TYPE = "authenticationTokens".freeze
+      RESOURCE_TYPE = "authenticationTokens"
 
       include Concerns::CorsSettings
 

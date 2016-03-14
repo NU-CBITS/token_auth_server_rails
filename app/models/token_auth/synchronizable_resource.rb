@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module TokenAuth
   # A resource that may be pushed and/or pulled by an entity.
   class SynchronizableResource < ActiveRecord::Base
