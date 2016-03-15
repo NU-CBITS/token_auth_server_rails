@@ -1,4 +1,4 @@
-<h2>Manage tokens for <%= @entity || @entity_id %></h2>
+<h2><%= t(".manage_tokens_for", default: "Manage tokens for") %> <%= @entity || @entity_id %></h2>
 
 <table class="table">
   <% if !@authentication_token %>
@@ -25,14 +25,14 @@
           <% end %>
         </td>
         <td>
-          <%= button_to 'Destroy', token_auth.configuration_token_path(@entity_id), method: :delete, class: "btn btn-warning" %>
+          <%= button_to t(".destroy", default: "Destroy"), token_auth.configuration_token_path(@entity_id), method: :delete, class: "btn btn-warning" %>
         </td>
       <% end %>
     </tr>
   <% else %>
     <tr id="auth-token">
       <td class="lead">
-        Auth token
+        <%= @authentication_token.class.model_name.human %>
         <% unless @authentication_token.is_enabled? %>
           <span class="label label-danger">Disabled</span>
         <% end %>
@@ -42,13 +42,13 @@
       </td>
       <td>
         <% if @authentication_token.is_enabled? %>
-          <%= button_to 'Disable', authentication_token_path(@entity_id), method: :patch, class: "btn btn-warning", params: { is_enabled: false } %>
+          <%= button_to t(".disable", default: "Disable"), authentication_token_path(@entity_id), method: :patch, class: "btn btn-warning", params: { is_enabled: false } %>
         <% else %>
           <%= button_to 'Enable', authentication_token_path(@entity_id), method: :patch, class: "btn btn-info", params: { is_enabled: true } %>
         <% end %>
       </td>
       <td>
-        <%= button_to 'Destroy', authentication_token_path(@entity_id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+        <%= button_to t(".destroy", default: "Destroy"), authentication_token_path(@entity_id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
       </td>
     </tr>
   <% end %>
