@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 - 2016-03-15
+
+* translate view text
+* bump requirement to Rails 4.2.6
+* test with Ruby 2.3.0 and latest rubocop
+* use RVM Ruby 2.3.0
+
 ## 0.1.3 - 2016-02-18
 
 * allow for config token valid period to be modified
