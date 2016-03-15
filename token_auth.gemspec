@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
                 "Rakefile",
                 "README.md"]
 
-  s.add_dependency "rails", "~> 4.2.5.1"
+  s.add_dependency "rails", "~> 4.2.6"
   s.add_dependency "active_model_serializers", "= 0.10.0.rc3"
 
   s.add_development_dependency "pg"
