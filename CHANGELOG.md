@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 - 2016-03-15
+
+* add English translations
+
 ## 0.2.0 - 2016-03-15
 
 * translate view text
