@@ -5,3 +5,11 @@ en:
     failure_saving: "Unable to save %{name}: %{errors}"
     success_destroying: Successfully destroyed %{name}
     failure_destroying: "Unable to destroy %{name}: %{errors}"
+    models:
+      token_auth/authentication_token: Authentication token
+  token_auth:
+    tokens:
+      index:
+        disable: Disable
+        destroy: Destroy
+        manage_tokens_for: Manage tokens for
