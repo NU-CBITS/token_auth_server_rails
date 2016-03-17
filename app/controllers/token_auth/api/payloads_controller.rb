@@ -7,6 +7,8 @@ module TokenAuth
     class PayloadsController < ActionController::Base
       include TokenAuth::Concerns::CorsSettings
 
+      attr_reader :authentication_token
+
       rescue_from TokenAuth::Concerns::ApiResources::Api::Unauthorized,
                   with: :unauthorized
 
@@ -19,12 +21,7 @@ module TokenAuth
 
       def index
         authenticate!
-        entity_id = @authentication_token.entity_id
-        resources = find_pullable_resources(entity_id).map do |resource|
-          resource.klass.where(resource.entity_id_attribute_name => entity_id)
-        end.flatten
-
-        render json: resources
+        render json: pullable_resources
       end
 
       def options
@@ -33,13 +30,11 @@ module TokenAuth
 
       def create
         authenticate!
-        entity_id = @authentication_token.entity_id
-        payload = Payload.new(entity_id: entity_id)
+        payload = Payload.new(entity_id: authentication_token.entity_id)
         payload.save params[:data]
 
         headers["Errors"] = payload.errors.join(", ")
         render json: payload.valid_resources, status: 201
-
       rescue TokenAuth::Payload::MalformedPayloadError
         render json: {}, status: 400
       end
@@ -65,7 +60,7 @@ module TokenAuth
           @metadata[:timestamp],
           @metadata[:url],
           @metadata[:method],
-          @authentication_token.value
+          authentication_token.value
         ].compact.join)
       end
 
@@ -90,8 +85,14 @@ module TokenAuth
         raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
       end
 
-      def find_pullable_resources(entity_id)
-        SynchronizableResource.where(is_pullable: true, entity_id: entity_id)
+      def pullable_resources
+        return [] unless authentication_token
+
+        entity_id = authentication_token.entity_id
+        SynchronizableResource.where(is_pullable: true,
+                                     entity_id: entity_id).map do |resource|
+          resource.klass.where(resource.entity_id_attribute_name => entity_id)
+        end.flatten
       end
 
       def unauthorized

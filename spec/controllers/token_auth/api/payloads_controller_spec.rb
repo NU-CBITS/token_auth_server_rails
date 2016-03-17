@@ -102,6 +102,38 @@ module TokenAuth
               expect(response_json["data"][0]["id"]).to eq resource.uuid
             end
           end
+
+          context "and a range filter is provided" do
+            it "responds with the serialized resources within the range" do
+              SynchronizableResource.create!(
+                is_pullable: true,
+                entity_id: entity_id,
+                entity_id_attribute_name: "entity_id",
+                name: "synchronizable_resources",
+                class_name: "TokenAuth::SynchronizableResource"
+              )
+              @request.headers["Authorization"] = valid_authorization_get
+              get :index,
+                  filter: { updated_at: { since: Time.zone.now - 1.minute } }
+
+              expect(response_json["data"].length).to eq 1
+            end
+
+            it "responds without the serialized resources outside the range" do
+              SynchronizableResource.create!(
+                is_pullable: true,
+                entity_id: entity_id,
+                entity_id_attribute_name: "entity_id",
+                name: "synchronizable_resources",
+                class_name: "TokenAuth::SynchronizableResource"
+              )
+              @request.headers["Authorization"] = valid_authorization_get
+              get :index,
+                  filter: { updated_at: { since: Time.zone.now + 1.minute } }
+
+              expect(response_json["data"].length).to eq 0
+            end
+          end
         end
       end
 
