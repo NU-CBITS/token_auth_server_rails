@@ -114,7 +114,7 @@ module TokenAuth
               )
               @request.headers["Authorization"] = valid_authorization_get
               get :index,
-                  filter: { updated_at: { since: Time.zone.now - 1.minute } }
+                  filter: { updated_at: { gt: Time.zone.now - 1.minute } }
 
               expect(response_json["data"].length).to eq 1
             end
@@ -129,7 +129,7 @@ module TokenAuth
               )
               @request.headers["Authorization"] = valid_authorization_get
               get :index,
-                  filter: { updated_at: { since: Time.zone.now + 1.minute } }
+                  filter: { updated_at: { gt: Time.zone.now + 1.minute } }
 
               expect(response_json["data"].length).to eq 0
             end

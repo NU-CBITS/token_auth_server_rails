@@ -21,7 +21,8 @@ module TokenAuth
 
       def index
         authenticate!
-        render json: pullable_resources
+        render json: pullable_records,
+               meta: { timestamp: Time.zone.now.iso8601 }
       end
 
       def options
@@ -85,14 +86,12 @@ module TokenAuth
         raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
       end
 
-      def pullable_resources
-        return [] unless authentication_token
-
+      def pullable_records
         entity_id = authentication_token.entity_id
-        SynchronizableResource.where(is_pullable: true,
-                                     entity_id: entity_id).map do |resource|
-          resource.klass.where(resource.entity_id_attribute_name => entity_id)
-        end.flatten
+        SynchronizableResource.pullable_records_for(
+          entity_id: entity_id,
+          filter: params[:filter]
+        )
       end
 
       def unauthorized
