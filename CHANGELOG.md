@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 - 2016-03-18
+
+* enable filter by updated_at lower bound
+
 ## 0.2.1 - 2016-03-15
 
 * add English translations
