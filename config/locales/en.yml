@@ -22,6 +22,7 @@ en:
         case_insensitive: Case insensitive
         create: Create
         disable: Disable
+        disabled: Disabled
         destroy: Destroy
         enable: Enable
         expired: Expired

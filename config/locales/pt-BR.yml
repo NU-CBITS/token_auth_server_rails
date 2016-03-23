@@ -22,6 +22,7 @@ pt-BR:
         case_insensitive: Não distingue maiúsculas e minúsculas
         create: Criar token
         disable: Desativar
+        disabled: Desabilitado
         destroy: Destruir
         enable: Ativar
         expired: Expirado

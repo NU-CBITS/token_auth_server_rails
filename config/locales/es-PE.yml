@@ -22,6 +22,7 @@ es-PE:
         case_insensitive: No distingue mayúsculas y minúsculas
         create: Crear identificador
         disable: Desactivar
+        disabled: Inhabilitado
         destroy: Destruir
         enable: Activar
         expired: Vencido
