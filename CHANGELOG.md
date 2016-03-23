@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4 - 2016-03-23
+
+* add translations for "disabled"
+
 ## 0.2.3 - 2016-03-23
 
 * add all translations
