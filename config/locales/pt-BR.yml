@@ -1,10 +1,30 @@
 pt-BR:
   activerecord:
+    attributes:
+      token_auth/authentication_token:
+        client_uuid: Identificador Único Universal (uuid) do cliente
+    cannot_find: Não foi possível encontrar %{name}
+    success_saving: Salvo com sucesso %{name}
+    failure_saving: "Não foi possível salvar %{name}: %{errors}"
+    success_destroying: Destruído com sucesso %{name}
+    failure_destroying: "Não foi possível destruir %{name}: %{errors}"
     models:
-      token_auth/authentication_token: Autorizar Token
+      token_auth/authentication_token:
+        one: Autorizar Token
+        other: Autorizar Token
+      token_auth/configuration_token:
+        one: Configurar token
+        other: Configurar token
   token_auth:
     tokens:
       index:
+        are_you_sure: Está certo disto?
+        case_insensitive: Não distingue maiúsculas e minúsculas
+        create: Criar token
         disable: Desativar
         destroy: Destruir
+        enable: Ativar
+        expired: Expirado
+        expires_in: Expira em
         manage_tokens_for: Gerenciar Token para
+        value: Valor

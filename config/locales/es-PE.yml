@@ -1,10 +1,30 @@
 es-PE:
   activerecord:
+    attributes:
+      token_auth/authentication_token:
+        client_uuid: Identificador único universal (uuid) del cliente
+    cannot_find: No se pudo encontrar %{name}
+    success_saving: Guardado exitosamente %{name}
+    failure_saving: "No se pudo guardar %{name}: %{errors}"
+    success_destroying: Destruido exitosamente %{name}
+    failure_destroying: "No se pudo destruir %{name}: %{errors}"
     models:
-      token_auth/authentication_token: Autorizar identificador
+      token_auth/authentication_token:
+        one: Autorizar identificador
+        other: Autorizar identificador
+      token_auth/configuration_token:
+        one: Configurar identificador
+        other: Configurar identificador
   token_auth:
     tokens:
       index:
+        are_you_sure: ¿Estás seguro?
+        case_insensitive: No distingue mayúsculas y minúsculas
+        create: Crear identificador
         disable: Desactivar
         destroy: Destruir
+        enable: Activar
+        expired: Vencido
+        expires_in: Vence en
         manage_tokens_for: Administrar identificador para
+        value: Valor

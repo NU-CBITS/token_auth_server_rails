@@ -1,27 +1,27 @@
 <h2><%= t(".manage_tokens_for", default: "Manage tokens for") %> <%= @entity || @entity_id %></h2>
 
 <table class="table">
-  <% if !@authentication_token %>
+  <% unless @authentication_token %>
     <tr id="config-token">
       <td class="lead">
-        Config token
+        <%= TokenAuth::ConfigurationToken.model_name.human %>
       </td>
       <td>
         <% if @configuration_token %>
           <% if @configuration_token.expired? %>
-            <span class="label label-warning">Expired</span>
+            <span class="label label-warning"><%= t(".expired", default: "Expired") %></span>
           <% else %>
-            Expires in <%= time_ago_in_words @configuration_token.expires_at %>
+            <%= t(".expires_in", default: "Expires in") %> <%= time_ago_in_words @configuration_token.expires_at %>
           <% end %>
         <% else %>
-          <%= button_to 'Create', configuration_token_path(@entity_id), class: "btn btn-default" %>
+          <%= button_to t(".create", default: "Create"), configuration_token_path(@entity_id), class: "btn btn-default" %>
         <% end %>
       </td>
       <% if @configuration_token %>
         <td>
           <% unless @configuration_token.expired? %>
-            Value <mark><%= @configuration_token.value %></mark>
-            <p><small>case insensitive</small></p>
+            <%= t(".value", default: "Value") %> <mark class="lead"><%= @configuration_token.value %></mark>
+            <p><small><%= t(".case_insensitive", default: "case insensitive") %></small></p>
           <% end %>
         </td>
         <td>
@@ -32,23 +32,23 @@
   <% else %>
     <tr id="auth-token">
       <td class="lead">
-        <%= @authentication_token.class.model_name.human %>
+        <%= @authentication_token.model_name.human %>
         <% unless @authentication_token.is_enabled? %>
-          <span class="label label-danger">Disabled</span>
+          <span class="label label-danger"><%= t(".disabled", default: "Disabled") %></span>
         <% end %>
       </td>
       <td>
-        Client uuid <%= @authentication_token.client_uuid %>
+        <%= t("activerecord.attributes.token_auth/authentication_token.client_uuid", default: "Client uuid") %> <%= @authentication_token.client_uuid %>
       </td>
       <td>
         <% if @authentication_token.is_enabled? %>
           <%= button_to t(".disable", default: "Disable"), authentication_token_path(@entity_id), method: :patch, class: "btn btn-warning", params: { is_enabled: false } %>
         <% else %>
-          <%= button_to 'Enable', authentication_token_path(@entity_id), method: :patch, class: "btn btn-info", params: { is_enabled: true } %>
+          <%= button_to t(".enable", default: "Enable"), authentication_token_path(@entity_id), method: :patch, class: "btn btn-info", params: { is_enabled: true } %>
         <% end %>
       </td>
       <td>
-        <%= button_to t(".destroy", default: "Destroy"), authentication_token_path(@entity_id), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+        <%= button_to t(".destroy", default: "Destroy"), authentication_token_path(@entity_id), method: :delete, class: "btn btn-danger", data: { confirm: t(".are_you_sure", default: "Are you sure?") } %>
       </td>
     </tr>
   <% end %>

@@ -1,15 +1,30 @@
 en:
   activerecord:
+    attributes:
+      token_auth/authentication_token:
+        client_uuid: Client uuid
     cannot_find: Unable to find %{name}
     success_saving: Successfully saved %{name}
     failure_saving: "Unable to save %{name}: %{errors}"
     success_destroying: Successfully destroyed %{name}
     failure_destroying: "Unable to destroy %{name}: %{errors}"
     models:
-      token_auth/authentication_token: Authentication token
+      token_auth/authentication_token:
+        one: Authentication token
+        other: Authentication tokens
+      token_auth/configuration_token:
+        one: Configuration token
+        other: Configuration tokens
   token_auth:
     tokens:
       index:
+        are_you_sure: Are you sure?
+        case_insensitive: Case insensitive
+        create: Create
         disable: Disable
         destroy: Destroy
+        enable: Enable
+        expired: Expired
+        expires_in: Expires in
         manage_tokens_for: Manage tokens for
+        value: Value
