@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5 - 2016-04-13
+
+* modify translation for config token
+
 ## 0.2.4 - 2016-03-23
 
 * add translations for "disabled"
