@@ -13,8 +13,8 @@ es-PE:
         one: Autorizar identificador
         other: Autorizar identificador
       token_auth/configuration_token:
-        one: Configurar identificador
-        other: Configurar identificador
+        one: Identificador
+        other: Identificador
   token_auth:
     tokens:
       index:
