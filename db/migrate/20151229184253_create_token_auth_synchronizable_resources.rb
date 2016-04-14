@@ -1,4 +1,4 @@
-class CreateTokenAuthSynchronizableResources < ActiveRecord::Migration
+module CreateTokenAuthSynchronizableResourcesMigration
   def change
     create_table :token_auth_synchronizable_resources do |t|
       t.string :uuid, null: false
@@ -11,5 +11,15 @@ class CreateTokenAuthSynchronizableResources < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end
+end
+
+if ActiveRecord::Migration.respond_to? :[]
+  class CreateTokenAuthSynchronizableResources < ActiveRecord::Migration[4.2]
+    include CreateTokenAuthSynchronizableResourcesMigration
+  end
+else
+  class CreateTokenAuthSynchronizableResources < ActiveRecord::Migration
+    include CreateTokenAuthSynchronizableResourcesMigration
   end
 end
