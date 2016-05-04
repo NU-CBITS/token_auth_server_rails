@@ -32,7 +32,7 @@ module TokenAuth
       def create
         authenticate!
         payload = Payload.new(entity_id: authentication_token.entity_id)
-        payload.save params[:data]
+        payload.save request_data
 
         headers["Errors"] = payload.errors.join(", ")
         render json: payload.valid_resources, status: 201
@@ -53,9 +53,15 @@ module TokenAuth
         raise TokenAuth::Concerns::ApiResources::Api::Unauthorized
       end
 
+      def request_data
+        return nil unless request.post?
+
+        params[:data] || []
+      end
+
       def calculate_signature
         OpenSSL::Digest::MD5.hexdigest([
-          params[:data] ? params[:data].to_json : nil,
+          request_data ? request_data.to_json : nil,
           @metadata[:key],
           @metadata[:nonce],
           @metadata[:timestamp],
