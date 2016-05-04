@@ -6,9 +6,6 @@ rvm:
 gemfile:
   - Gemfile
   - gemfiles/Gemfile.rails-5.0-beta
-matrix:
-  allow_failures:
-    - gemfile: gemfiles/Gemfile.rails-5.0-beta
 addons:
   postgresql: "9.3"
 before_script:
