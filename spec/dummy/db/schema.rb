@@ -22,19 +22,17 @@ ActiveRecord::Schema.define(version: 20151229184253) do
     t.boolean "is_enabled",             default: true, null: false
     t.string  "uuid",        limit: 36,                null: false
     t.string  "client_uuid",                           null: false
+    t.index ["client_uuid"], name: "index_token_auth_authentication_tokens_on_client_uuid", unique: true, using: :btree
+    t.index ["entity_id"], name: "index_token_auth_authentication_tokens_on_entity_id", unique: true, using: :btree
+    t.index ["value"], name: "index_token_auth_authentication_tokens_on_value", unique: true, using: :btree
   end
-
-  add_index "token_auth_authentication_tokens", ["client_uuid"], name: "index_token_auth_authentication_tokens_on_client_uuid", unique: true, using: :btree
-  add_index "token_auth_authentication_tokens", ["entity_id"], name: "index_token_auth_authentication_tokens_on_entity_id", unique: true, using: :btree
-  add_index "token_auth_authentication_tokens", ["value"], name: "index_token_auth_authentication_tokens_on_value", unique: true, using: :btree
 
   create_table "token_auth_configuration_tokens", force: :cascade do |t|
     t.datetime "expires_at", null: false
     t.string   "value",      null: false
     t.integer  "entity_id",  null: false
+    t.index ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true, using: :btree
   end
-
-  add_index "token_auth_configuration_tokens", ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true, using: :btree
 
   create_table "token_auth_synchronizable_resources", force: :cascade do |t|
     t.string   "uuid",                                     null: false
