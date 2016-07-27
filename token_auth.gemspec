@@ -23,12 +23,12 @@ Gem::Specification.new do |s|
                 "README.md"]
 
   s.add_dependency "active_model_serializers", "= 0.10.0.rc3"
-  s.add_dependency "actionpack", "~> 5.0.0.rc1"
-  s.add_dependency "activerecord", "~> 5.0.0.rc1"
-  s.add_dependency "railties", "~> 5.0.0.rc1"
+  s.add_dependency "actionpack", "~> 5.0.X"
+  s.add_dependency "activerecord", "~> 5.0.X"
+  s.add_dependency "railties", "~> 5.0.X"
 
   s.add_development_dependency "pg"
-  s.add_development_dependency "rspec-rails", "~> 3.5.0.beta3"
+  s.add_development_dependency "rspec-rails", "~> 3.5.X"
   s.add_development_dependency "capybara", "~> 2.5"
   s.add_development_dependency "brakeman"
   s.add_development_dependency "rubocop"

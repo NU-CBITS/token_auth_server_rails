@@ -114,7 +114,9 @@ module TokenAuth
               )
               @request.headers["Authorization"] = valid_authorization_get
               get :index,
-                  filter: { updated_at: { gt: Time.zone.now - 1.minute } }
+                  params: {
+                    filter: { updated_at: { gt: Time.zone.now - 1.minute } }
+                  }
 
               expect(response_json["data"].length).to eq 1
             end
@@ -129,7 +131,9 @@ module TokenAuth
               )
               @request.headers["Authorization"] = valid_authorization_get
               get :index,
-                  filter: { updated_at: { gt: Time.zone.now + 1.minute } }
+                  params: {
+                    filter: { updated_at: { gt: Time.zone.now + 1.minute } }
+                  }
 
               expect(response_json["data"].length).to eq 0
             end
@@ -215,7 +219,7 @@ module TokenAuth
             it "responds with 400" do
               @request.headers["Authorization"] =
                 valid_authorization_bad_payload_post
-              post :create, data: "baz"
+              post :create, params: { data: "baz" }
 
               expect(response.status).to eq 400
             end
@@ -223,7 +227,7 @@ module TokenAuth
 
           it "responds with 201" do
             @request.headers["Authorization"] = valid_authorization_post
-            post :create, data: []
+            post :create, params: { data: [] }
 
             expect(response.status).to eq 201
           end
@@ -239,7 +243,7 @@ module TokenAuth
               )
               allow(Payload).to receive(:new) { payload }
 
-              post :create, data: []
+              post :create, params: { data: [] }
 
               expect(response.status).to eq 201
               expect(response.headers["Errors"]).to eq "baz"

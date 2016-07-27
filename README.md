@@ -27,9 +27,7 @@ Add the gem to your Gemfile:
 ```ruby
 # Gemfile
 
-gem 'token_auth',
-    git: 'https://github.com/NU-CBITS/token_auth_server_rails',
-    tag: '0.1.1'
+gem "token_auth", "~> 0.3.X"
 ```
 
 Install it:
@@ -41,7 +39,7 @@ bundle
 Install and run the migrations:
 
 ```
-rake token_auth:install:migrations; rake db:migrate
+rails token_auth:install:migrations; rails db:migrate
 ```
 
 Mount the Engine and make its routes available to the host application:
@@ -49,7 +47,7 @@ Mount the Engine and make its routes available to the host application:
 ```ruby
 # config/routes.rb
 
-mount TokenAuth::Engine => '/token_auth'
+mount TokenAuth::Engine => "/token_auth"
 ```
 
 ## Configuration
@@ -106,6 +104,6 @@ bundle
 Run the unit tests and linters for this Engine:
 
 ```
-RAILS_ENV=test bin/rake db:create db:migrate
-bin/rake
+RAILS_ENV=test rails db:drop db:create db:migrate
+rake
 ```
