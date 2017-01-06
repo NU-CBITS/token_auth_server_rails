@@ -6,18 +6,18 @@ module TokenAuth
     routes { TokenAuth::Engine.routes }
 
     def auth_token
-      @auth_token ||= (
+      @auth_token ||= begin
         token = instance_double("TokenAuth::AuthenticationToken",
                                 entity_id: 1)
         allow(token).to receive_message_chain("class.model_name.human")
           .and_return("Authentication token")
 
         token
-      )
+      end
     end
 
     before do
-      allow(AuthenticationToken).to receive(:find_by_entity_id)
+      allow(AuthenticationToken).to receive(:find_by)
         .and_return(auth_token)
     end
 

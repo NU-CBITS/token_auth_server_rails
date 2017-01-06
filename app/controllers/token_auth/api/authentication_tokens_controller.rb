@@ -6,7 +6,7 @@ module TokenAuth
     class AuthenticationTokensController < ::TokenAuth::Api::BaseController
       RESOURCE_TYPE = "authenticationTokens"
 
-      include Concerns::CorsSettings
+      include TokenAuth::Concerns::CorsSettings
 
       after_action do |controller|
         controller.cors_set_access_control_headers(

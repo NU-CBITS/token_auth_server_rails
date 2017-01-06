@@ -5,9 +5,9 @@ module TokenAuth
     def index
       @entity_id = params[:entity_id]
       @authentication_token = AuthenticationToken
-                              .find_by_entity_id(@entity_id)
+                              .find_by(entity_id: @entity_id)
       @configuration_token = ConfigurationToken
-                             .find_by_entity_id(@entity_id)
+                             .find_by(entity_id: @entity_id)
     end
   end
 end

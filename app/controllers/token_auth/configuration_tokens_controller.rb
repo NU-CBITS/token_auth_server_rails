@@ -18,7 +18,7 @@ module TokenAuth
     end
 
     def destroy
-      token = ConfigurationToken.find_by_entity_id(params[:entity_id])
+      token = ConfigurationToken.find_by(entity_id: params[:entity_id])
 
       if token.nil?
         redirect_to tokens_index,
