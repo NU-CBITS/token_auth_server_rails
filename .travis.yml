@@ -3,9 +3,7 @@ language: ruby
 cache: bundler
 rvm:
   - 2.3.0
-gemfile:
-  - Gemfile
-  - gemfiles/Gemfile.rails-5.0-beta
+  - 2.3.1
 addons:
   postgresql: "9.3"
 before_script:

@@ -21,7 +21,7 @@ module TokenAuth
       AUTH_HEADER = "X-AUTH-TOKEN"
 
       def options
-        render nothing: true
+        head :ok
       end
 
       private

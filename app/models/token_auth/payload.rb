@@ -66,12 +66,14 @@ module TokenAuth
     end
 
     def deserialize(params)
-      params.each_with_object({}) do |pair, attrs|
-        name, value = pair
+      attrs = {}
+      params.each do |name, value|
         name = name.to_s.underscore
         name = "uuid" if name == "id"
         attrs[name] = value
       end
+
+      attrs
     end
   end
 end

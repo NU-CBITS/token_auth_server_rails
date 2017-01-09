@@ -8,7 +8,7 @@ module TokenAuth
         include ::TokenAuth::Concerns::ApiResources
 
         def fake_action
-          render nothing: true
+          head :ok
         end
       end
 
@@ -25,7 +25,7 @@ module TokenAuth
         context "when valid auth credentials are provided" do
           it "responds with 200" do
             create_valid_credentials
-            process :options, "OPTIONS", clientUuid: "abc"
+            process :options, method: :options, params: { clientUuid: "abc" }
 
             expect(response.status).to eq 200
           end
@@ -45,7 +45,7 @@ module TokenAuth
           context "when auth credentials are invalid" do
             it "responds with 401" do
               create_invalid_credentials
-              get :fake_action, clientUuid: "abc"
+              get :fake_action, params: { clientUuid: "abc" }
 
               expect(response.status).to eq 401
             end
@@ -54,7 +54,7 @@ module TokenAuth
           context "when auth credentials are disabled" do
             it "responds with 401" do
               create_disabled_credentials
-              get :fake_action, clientUuid: "abc"
+              get :fake_action, params: { clientUuid: "abc" }
 
               expect(response.status).to eq 401
             end
@@ -63,7 +63,7 @@ module TokenAuth
           context "when auth credentials are valid" do
             it "responds with 200" do
               create_valid_credentials
-              get :fake_action, clientUuid: "abc"
+              get :fake_action, params: { clientUuid: "abc" }
 
               expect(response.status).to eq 200
             end
