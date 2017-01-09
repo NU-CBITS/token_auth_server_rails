@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.1 - 2017-01-09
+
+* Fix error in inclusion of Concerns::CorsSettings
+* stop using deprecated `each_with_object` method
+
+## 0.3.0.beta2 - 2016-07-27
+
+* satisfy most Rails 5 deprecations
+
+## 0.3.0.beta1 - 2016-05-06
+
+* update to Rails 5
+* update Travis config
+* fix Rails 5 compatibility
+* ignore byebug files
+* test against byebug files
+
 ## 0.2.5 - 2016-04-13
 
 * modify translation for config token
