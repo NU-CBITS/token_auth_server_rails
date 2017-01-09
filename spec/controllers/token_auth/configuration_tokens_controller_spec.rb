@@ -6,14 +6,14 @@ module TokenAuth
     routes { TokenAuth::Engine.routes }
 
     def config_token
-      @config_token ||= (
+      @config_token ||= begin
         token = instance_double("TokenAuth::ConfigurationToken",
                                 entity_id: 1)
         allow(token).to receive_message_chain("class.model_name.human")
           .and_return("Configuration token")
 
         token
-      )
+      end
     end
 
     describe "POST create" do
@@ -46,14 +46,14 @@ module TokenAuth
 
     describe "DELETE destroy" do
       before do
-        allow(ConfigurationToken).to receive(:find_by_entity_id)
+        allow(ConfigurationToken).to receive(:find_by)
           .and_return(config_token)
       end
 
       context "when the token is not found" do
         it "sets an alert" do
-          allow(ConfigurationToken).to receive(:find_by_entity_id) { nil }
-          delete :destroy, params: { entity_id: 1 }
+          allow(ConfigurationToken).to receive(:find_by) { nil }
+          delete :destroy, entity_id: 1
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to find/)

@@ -3,7 +3,7 @@ module TokenAuth
   # Manages Authentication Tokens.
   class AuthenticationTokensController < ::TokenAuth::BaseController
     def update
-      token = AuthenticationToken.find_by_entity_id(params[:entity_id])
+      token = AuthenticationToken.find_by(entity_id: params[:entity_id])
 
       if token.update(token_params)
         redirect_to tokens_url(token.entity_id),
@@ -18,7 +18,7 @@ module TokenAuth
     end
 
     def destroy
-      token = AuthenticationToken.find_by_entity_id(params[:entity_id])
+      token = AuthenticationToken.find_by(entity_id: params[:entity_id])
 
       if token.destroy
         redirect_to tokens_url(token.entity_id),

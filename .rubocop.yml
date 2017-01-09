@@ -30,3 +30,7 @@ SpaceInsideStringInterpolation:
 
 StringLiterals:
   EnforcedStyle: double_quotes
+
+HttpPositionalArguments:
+  Exclude:
+    - spec/**/*

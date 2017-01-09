@@ -94,6 +94,7 @@ module TokenAuth
 
       def pullable_records
         entity_id = authentication_token.entity_id
+
         SynchronizableResource.pullable_records_for(
           entity_id: entity_id,
           filter: params[:filter]
