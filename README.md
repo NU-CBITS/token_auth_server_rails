@@ -92,6 +92,62 @@ After generating a configuration token, test authentication token generation:
 curl --data "data[clientUuid]=asdf&configurationToken=4C3LM9" http://localhost:3000/token_auth/api/authentication_tokens
 ```
 
+## Sample Set up with Harmonium
+
+This gem is often used in conjunction with
+[harmonium-ts](https://github.com/NU-CBITS/harmonium-ts/). Below is some more
+specific examples of set up to work with both.
+
+Every two minutes by default, Harmonium transmits changed (dirty) resources to
+the server and then polls the server for new or updated resources.
+
+The server requires some configurations that allow for these `GET` and `POST` requests:
+
+* Install the gem [token_auth_server_rails](https://github.com/NU-CBITS/token_auth_server_rails),
+* Update [Participant callback](./examples/harmonium_configurations/participant_callbacks.rb),
+* Update [Participant class](./examples/harmonium_configurations/participant.rb)
+  , and
+* Specify [syncable resources](./examples/harmonium_configurations/syncable_resources.rb)
+
+On the server, each syncable class will need a `uuid` column. Add a before
+validation such as [UuidCallbacks](./examples/harmonium_configurations/uuid_callbacks.rb)
+
+```ruby
+class Foo < ApplicationRecord
+  before_validation UuidCallbacks
+
+  validates :uuid, presence: true
+  validates :uuid, uniqueness: true
+
+  belongs_to :participant
+end
+```
+
+You will also need to serialize the data. Specify what you need in the
+`attributes` key and `id` key. An example is listed below.
+
+```ruby
+class FooSerializer < ActiveModel::Serializer
+  attributes :uuid,
+             :client_created_at,
+             :client_updated_at,
+             :bar
+
+  attribute :uuid, key: :id
+
+  def bar
+    "hello world"
+  end
+end
+```
+
+These updates (adding the `uuid` column, serializing the data, and specifying
+classes to the `pullable_resource_types` in
+[Specify syncable resources](./examples/server_configurations/syncable_resources.rb))
+will make these resources available for `GET` requests.
+
+Example: `GET "/token_auth/api/payloads?filter[updated_at][gt]=DATETIME"`:
+
 ## Development
 
 Clone the repository and install dependencies:

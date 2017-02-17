@@ -4,7 +4,7 @@ AllCops:
     - config/**/*
     - db/**/*
     - gemfiles/**/*
-    - spec/dummy/**/*
+    - spec/**/*
     - vendor/**/*
   TargetRubyVersion: 2.3
 
