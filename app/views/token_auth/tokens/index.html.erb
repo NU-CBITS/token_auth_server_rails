@@ -1,5 +1,6 @@
 <h2><%= t(".manage_tokens_for", default: "Manage tokens for") %> <%= @entity || @entity_id %></h2>
-
+<% pre_content if respond_to? :pre_content %>
+<%= content_for :pre_content %>
 <table class="table">
   <% unless @authentication_token %>
     <tr id="config-token">
@@ -53,3 +54,5 @@
     </tr>
   <% end %>
 </table>
+<% post_content if respond_to? :post_content %>
+<%= content_for :post_content %>

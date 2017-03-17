@@ -84,6 +84,21 @@ module Api
 end
 ```
 
+If you want to include content at the top of the token configuration
+page or below it, define a `pre_content` or `post_content` method in a helper
+with a `content_for` block that defines content for `:pre_content` or
+`:post_content`:
+
+```ruby
+module ApplicationHelper
+  def pre_content
+    content_for :pre_content do
+      "test food"
+    end
+  end
+end
+```
+
 ## Testing
 
 After generating a configuration token, test authentication token generation:
