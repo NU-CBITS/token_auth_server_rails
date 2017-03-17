@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2 - 2017-03-17
+* Add `pre_content` and `post_content` `content_for` tags on the token
+  configuration page
+
 ## 0.3.1 - 2017-01-09
 
 * Fix error in inclusion of Concerns::CorsSettings
