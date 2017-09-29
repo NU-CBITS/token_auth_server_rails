@@ -175,6 +175,6 @@ bundle
 Run the unit tests and linters for this Engine:
 
 ```
-RAILS_ENV=test rails db:drop db:create db:migrate
+RAILS_ENV=test bin/rails app:db:drop app:db:create app:db:migrate
 rake
 ```

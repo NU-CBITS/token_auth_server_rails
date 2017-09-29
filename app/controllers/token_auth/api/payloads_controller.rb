@@ -4,7 +4,7 @@ require "openssl"
 module TokenAuth
   module Api
     # Processes inbound and outbound resources.
-    class PayloadsController < ActionController::Base
+    class PayloadsController < ::TokenAuth::Api::BaseController
       include TokenAuth::Concerns::CorsSettings
 
       attr_reader :authentication_token
