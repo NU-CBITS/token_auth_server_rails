@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 3.5.X"
   s.add_development_dependency "capybara", "~> 2.5"
   s.add_development_dependency "brakeman"
-  s.add_development_dependency "rubocop"
+  s.add_development_dependency "rubocop", "0.47.1"
   s.add_development_dependency "mdl"
   s.add_development_dependency "simplecov", "~> 0.11"
 end
