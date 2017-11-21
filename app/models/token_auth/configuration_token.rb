@@ -2,12 +2,12 @@
 
 module TokenAuth
   # A single use human readable token for use with client configuration.
-  class ConfigurationToken < ActiveRecord::Base
+  class ConfigurationToken < ApplicationRecord
     mattr_accessor :valid_period
     self.valid_period = 4.hours
-    SAMPLE_SET = %w( A B C D E F H J K L M N P Q R S T U V W X Y Z
+    SAMPLE_SET = %w[ A B C D E F H J K L M N P Q R S T U V W X Y Z
                      2 3 4 5 7 8 9
-                     # $ ).freeze
+                     # $ ].freeze
     TOKEN_LENGTH = 6
 
     validates :expires_at, :entity_id, :value, presence: true
@@ -41,7 +41,7 @@ module TokenAuth
       end
 
       authentication_token
-    rescue
+    rescue StandardError
       nil
     end
 

@@ -143,7 +143,7 @@ module TokenAuth
 
       describe "OPTIONS" do
         it "responds with 200" do
-          process :options, "OPTIONS"
+          process :options, method: "OPTIONS"
 
           expect(response.status).to eq 200
         end
