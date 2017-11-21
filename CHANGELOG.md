@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3 - 2017-09-29
+
+* enable overriding the PayloadsController superclass
+
 ## 0.3.2 - 2017-03-17
 * Add `pre_content` and `post_content` `content_for` tags on the token
   configuration page
