@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TokenAuth
   # An inbound resource. Inbound resource requests are validated and an
   # attempt is made to upsert them.
@@ -10,7 +11,6 @@ module TokenAuth
 
     def self.resource_type(params)
       params.extract!(:type)[:type]
-
     rescue NoMethodError
       nil
     end
@@ -60,7 +60,6 @@ module TokenAuth
       else
         @errors << resource.errors.full_messages.join(", ")
       end
-
     rescue ActiveRecord::UnknownAttributeError => error
       @errors << error.message
     end

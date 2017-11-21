@@ -3,25 +3,8 @@
     {
       "warning_type": "Cross-Site Request Forgery",
       "warning_code": 7,
-      "fingerprint": "c674d468288bd469bd3118d61dc6a38738f84047fe7a8ee381cdc7786a51c8cd",
-      "message": "'protect_from_forgery' should be called in TokenAuth::Api::PayloadsController",
-      "file": "app/controllers/token_auth/api/payloads_controller.rb",
-      "line": 7,
-      "link": "http://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
-      "code": null,
-      "render_path": null,
-      "location": {
-        "type": "controller",
-        "controller": "TokenAuth::Api::PayloadsController"
-      },
-      "user_input": null,
-      "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "Cross-Site Request Forgery",
-      "warning_code": 7,
       "fingerprint": "f4b575f7a0660e776b6f6a29f548beb56b6b506e386fe386430ba52e25c3f350",
+      "check_name": "ForgerySetting",
       "message": "'protect_from_forgery' should be called in TokenAuth::Api::BaseController",
       "file": "app/controllers/token_auth/api/base_controller.rb",
       "line": 4,
@@ -37,6 +20,6 @@
       "note": ""
     }
   ],
-  "updated": "2017-01-09 11:10:39 -0600",
-  "brakeman_version": "3.4.1"
+  "updated": "2017-11-21 13:52:05 -0600",
+  "brakeman_version": "4.0.1"
 }

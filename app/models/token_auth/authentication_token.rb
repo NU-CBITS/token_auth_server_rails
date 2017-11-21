@@ -1,7 +1,8 @@
 # frozen_string_literal: true
+
 module TokenAuth
   # A key shared with a client for authenticating requests.
-  class AuthenticationToken < ActiveRecord::Base
+  class AuthenticationToken < ApplicationRecord
     TOKEN_LENGTH = 32
     UUID_LENGTH = 36
 

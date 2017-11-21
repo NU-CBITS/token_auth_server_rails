@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TokenAuth
   # Manage configuration and authentication tokens.
   class TokensController < ::TokenAuth::BaseController

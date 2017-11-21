@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
@@ -22,17 +23,17 @@ Gem::Specification.new do |s|
                 "Rakefile",
                 "README.md"]
 
-  s.add_dependency "active_model_serializers", "= 0.10.0.rc3"
-  s.add_dependency "actionpack", "= 5.0.1"
-  s.add_dependency "activerecord", "= 5.0.1"
-  s.add_dependency "railties", "= 5.0.1"
+  s.add_dependency "active_model_serializers", "~> 0.10.7"
+  s.add_dependency "actionpack", "~> 5.1"
+  s.add_dependency "activerecord", "~> 5.1"
+  s.add_dependency "railties", "~> 5.1"
   s.add_dependency "sprockets-rails", "= 3.2.0"
 
   s.add_development_dependency "pg"
-  s.add_development_dependency "rspec-rails", "~> 3.5.X"
+  s.add_development_dependency "rspec-rails", "~> 3.7"
   s.add_development_dependency "capybara", "~> 2.5"
   s.add_development_dependency "brakeman"
-  s.add_development_dependency "rubocop", "0.47.1"
+  s.add_development_dependency "rubocop", "0.51"
   s.add_development_dependency "mdl"
   s.add_development_dependency "simplecov", "~> 0.11"
 end

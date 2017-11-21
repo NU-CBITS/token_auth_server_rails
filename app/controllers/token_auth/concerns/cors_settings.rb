@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TokenAuth
   module Concerns
     # Allow cross-domain requests.

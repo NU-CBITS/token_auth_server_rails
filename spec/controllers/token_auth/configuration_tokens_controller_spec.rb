@@ -53,7 +53,7 @@ module TokenAuth
       context "when the token is not found" do
         it "sets an alert" do
           allow(ConfigurationToken).to receive(:find_by) { nil }
-          delete :destroy, entity_id: 1
+          delete :destroy, params: { entity_id: 1 }
 
           expect(response).to redirect_to tokens_url(1)
           expect(flash[:alert]).to match(/Unable to find/)

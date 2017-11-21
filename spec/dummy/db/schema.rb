@@ -15,34 +15,34 @@ ActiveRecord::Schema.define(version: 20151229184253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "token_auth_authentication_tokens", force: :cascade do |t|
-    t.integer "entity_id",                             null: false
-    t.string  "value",       limit: 32,                null: false
-    t.boolean "is_enabled",             default: true, null: false
-    t.string  "uuid",        limit: 36,                null: false
-    t.string  "client_uuid",                           null: false
-    t.index ["client_uuid"], name: "index_token_auth_authentication_tokens_on_client_uuid", unique: true, using: :btree
-    t.index ["entity_id"], name: "index_token_auth_authentication_tokens_on_entity_id", unique: true, using: :btree
-    t.index ["value"], name: "index_token_auth_authentication_tokens_on_value", unique: true, using: :btree
+  create_table "token_auth_authentication_tokens", id: :serial, force: :cascade do |t|
+    t.integer "entity_id", null: false
+    t.string "value", limit: 32, null: false
+    t.boolean "is_enabled", default: true, null: false
+    t.string "uuid", limit: 36, null: false
+    t.string "client_uuid", null: false
+    t.index ["client_uuid"], name: "index_token_auth_authentication_tokens_on_client_uuid", unique: true
+    t.index ["entity_id"], name: "index_token_auth_authentication_tokens_on_entity_id", unique: true
+    t.index ["value"], name: "index_token_auth_authentication_tokens_on_value", unique: true
   end
 
-  create_table "token_auth_configuration_tokens", force: :cascade do |t|
+  create_table "token_auth_configuration_tokens", id: :serial, force: :cascade do |t|
     t.datetime "expires_at", null: false
-    t.string   "value",      null: false
-    t.integer  "entity_id",  null: false
-    t.index ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true, using: :btree
+    t.string "value", null: false
+    t.integer "entity_id", null: false
+    t.index ["entity_id"], name: "index_token_auth_configuration_tokens_on_entity_id", unique: true
   end
 
-  create_table "token_auth_synchronizable_resources", force: :cascade do |t|
-    t.string   "uuid",                                     null: false
-    t.integer  "entity_id",                                null: false
-    t.string   "entity_id_attribute_name",                 null: false
-    t.string   "name",                                     null: false
-    t.string   "class_name",                               null: false
-    t.boolean  "is_pullable",              default: false, null: false
-    t.boolean  "is_pushable",              default: false, null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+  create_table "token_auth_synchronizable_resources", id: :serial, force: :cascade do |t|
+    t.string "uuid", null: false
+    t.integer "entity_id", null: false
+    t.string "entity_id_attribute_name", null: false
+    t.string "name", null: false
+    t.string "class_name", null: false
+    t.boolean "is_pullable", default: false, null: false
+    t.boolean "is_pushable", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

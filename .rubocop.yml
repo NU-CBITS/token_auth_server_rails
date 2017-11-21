@@ -29,6 +29,10 @@ ModuleLength:
   Exclude:
     - spec/**/*
 
+OrderedDependencies:
+  Exclude:
+    - token_auth.gemspec
+
 SpaceInsideStringInterpolation:
   EnforcedStyle: space
 
