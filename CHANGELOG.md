@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 - 2017-11-22
+
+* update dependencies; fix rubocop warnings
+
 ## 0.3.3 - 2017-09-29
 
 * enable overriding the PayloadsController superclass
